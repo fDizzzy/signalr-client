@@ -35,10 +35,12 @@ public class WebsocketTransport extends HttpClientTransport {
     private String mPrefix;
     private static final Gson gson = new Gson();
     WebSocketClient mWebSocketClient;
+    private Logger logger;
     private UpdateableCancellableFuture<Void> mConnectionFuture;
 
     public WebsocketTransport(Logger logger) {
         super(logger);
+        this.logger = logger;
     }
 
     public WebsocketTransport(Logger logger, HttpConnection httpConnection) {
@@ -57,27 +59,12 @@ public class WebsocketTransport extends HttpClientTransport {
 
     @Override
     public SignalRFuture<Void> start(ConnectionBase connection, ConnectionType connectionType, final DataResultCallback callback) {
-        final String connectionString = connectionType == ConnectionType.InitialConnection ? "connect" : "reconnect";
-
-        final String transport = getName();
-        final String connectionToken = connection.getConnectionToken();
-        final String messageId = connection.getMessageId() != null ? connection.getMessageId() : "";
-        final String groupsToken = connection.getGroupsToken() != null ? connection.getGroupsToken() : "";
-        final String connectionData = connection.getConnectionData() != null ? connection.getConnectionData() : "";
-
-
-        String url = null;
-        try {
-            url = connection.getUrl() + "signalr/" + connectionString + '?'
-                    + "connectionData=" + URLEncoder.encode(URLEncoder.encode(connectionData, "UTF-8"), "UTF-8")
-                    + "&connectionToken=" + URLEncoder.encode(URLEncoder.encode(connectionToken, "UTF-8"), "UTF-8")
-                    + "&groupsToken=" + URLEncoder.encode(groupsToken, "UTF-8")
-                    + "&messageId=" + URLEncoder.encode(messageId, "UTF-8")
-                    + "&transport=" + URLEncoder.encode(transport, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
+        String url = connection.getUrl() + (connectionType == ConnectionType.InitialConnection ? "connect" : "reconnect")
+                + TransportHelper.getReceiveQueryString(this, connection);;
+        if(url.startsWith("https://"))
+            url = url.replaceFirst("https://","wss://");
+        else if(url.startsWith("http://"))
+            url = url.replaceFirst("https://","ws://");
         mConnectionFuture = new UpdateableCancellableFuture<Void>(null);
 
         URI uri;
@@ -89,10 +76,10 @@ public class WebsocketTransport extends HttpClientTransport {
             return mConnectionFuture;
         }
 
-        mWebSocketClient = new WebSocketClient(uri) {
+        mWebSocketClient = new WebSocketClient(uri, connection.getHeaders()) {
             @Override
             public void onOpen(ServerHandshake serverHandshake) {
-                mConnectionFuture.setResult(null);
+                mConnectionFuture.setResult(null); logger.log("onOpen", LogLevel.Information);
             }
 
             @Override
@@ -103,11 +90,13 @@ public class WebsocketTransport extends HttpClientTransport {
             @Override
             public void onClose(int i, String s, boolean b) {
                 mWebSocketClient.close();
+                logger.log("onClose" + s, LogLevel.Information);
             }
 
             @Override
             public void onError(Exception e) {
                 mWebSocketClient.close();
+                logger.log("onError", LogLevel.Information);
             }
 
             @Override
