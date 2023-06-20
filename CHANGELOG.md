@@ -1,5 +1,12 @@
 # SignalR java client Changelog
 
+# [1.1.0](https://github.com/fDizzzy/signalr-client/compare/v1.0.0...v1.1.0) (2023-06-20)
+
+
+### Features
+
+* change websocket ([81918a9](https://github.com/fDizzzy/signalr-client/commit/81918a9801ca3df28271dbdfacae28309aecd8a9))
+
 # 1.0.0 (2023-06-20)
 
 
