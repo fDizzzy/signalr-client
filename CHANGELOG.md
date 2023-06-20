@@ -1,5 +1,12 @@
 # SignalR java client Changelog
 
+# [1.2.0](https://github.com/fDizzzy/signalr-client/compare/v1.1.0...v1.2.0) (2023-06-20)
+
+
+### Features
+
+* bump version ([20537e6](https://github.com/fDizzzy/signalr-client/commit/20537e63c9b27ffe04d8e9858fc12e0f1bf9eb47))
+
 # [1.1.0](https://github.com/fDizzzy/signalr-client/compare/v1.0.0...v1.1.0) (2023-06-20)
 
 
