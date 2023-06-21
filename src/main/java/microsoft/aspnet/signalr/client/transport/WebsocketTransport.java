@@ -99,36 +99,36 @@ public class WebsocketTransport extends HttpClientTransport {
                 logger.log("onError", LogLevel.Information);
             }
 
-            @Override
-            public void onFragment(Framedata frame) {
-                try {
-                    String decodedString = Charsetfunctions.stringUtf8(frame.getPayloadData());
+            // @Override
+            // public void onFragment(Framedata frame) {
+            //     try {
+            //         String decodedString = Charsetfunctions.stringUtf8(frame.getPayloadData());
 
-                    if(decodedString.equals("]}")){
-                        return;
-                    }
+            //         if(decodedString.equals("]}")){
+            //             return;
+            //         }
 
-                    if(decodedString.endsWith(":[") || null == mPrefix){
-                        mPrefix = decodedString;
-                        return;
-                    }
+            //         if(decodedString.endsWith(":[") || null == mPrefix){
+            //             mPrefix = decodedString;
+            //             return;
+            //         }
 
-                    String simpleConcatenate = mPrefix + decodedString;
+            //         String simpleConcatenate = mPrefix + decodedString;
 
-                    if(isJSONValid(simpleConcatenate)){
-                        onMessage(simpleConcatenate);
-                    }else{
-                        String extendedConcatenate = simpleConcatenate + "]}";
-                        if (isJSONValid(extendedConcatenate)) {
-                            onMessage(extendedConcatenate);
-                        } else {
-                            log("invalid json received:" + decodedString, LogLevel.Critical);
-                        }
-                    }
-                } catch (InvalidDataException e) {
-                    e.printStackTrace();
-                }
-            }
+            //         if(isJSONValid(simpleConcatenate)){
+            //             onMessage(simpleConcatenate);
+            //         }else{
+            //             String extendedConcatenate = simpleConcatenate + "]}";
+            //             if (isJSONValid(extendedConcatenate)) {
+            //                 onMessage(extendedConcatenate);
+            //             } else {
+            //                 log("invalid json received:" + decodedString, LogLevel.Critical);
+            //             }
+            //         }
+            //     } catch (InvalidDataException e) {
+            //         e.printStackTrace();
+            //     }
+            // }
         };
         mWebSocketClient.connect();
 
