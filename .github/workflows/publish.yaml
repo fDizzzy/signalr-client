@@ -39,7 +39,6 @@ jobs:
         run: |
           mvn -B -U -X \
             -Pci-cd \
-            release:prepare \
             release:perform \
             source:jar \
             -s settings.xml \
