@@ -40,9 +40,8 @@ jobs:
         run: mvn --batch-mode deploy -Dmaven.test.skip
       - name: Release with Maven
         run: |
-          mvn -B -U \
+          mvn -B -U -X \
             -Pci-cd \
-            -X \
             release:prepare \
             release:perform \
             source:jar \
