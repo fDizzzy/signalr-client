@@ -23,13 +23,6 @@
             <email>dinhbatac@gmail.com</email>
         </developer>
     </developers>
-    <scm>
-        <connection>scm:git:https://github.com/Natural-Intelligence/openLineage-openMetadata-transporter.git</connection>
-        <url>https://github.com/Natural-Intelligence/openLineage-openMetadata-transporter.git</url>
-        <developerConnection>scm:git:https://github.com/Natural-Intelligence/openLineage-openMetadata-transporter.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <netbeans.hint.license>lgpl3</netbeans.hint.license>
