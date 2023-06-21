@@ -16,8 +16,9 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: "11"
-          distribution: "adopt"
+          distribution: "temurin"
           cache: maven
+          server-id: ossrh
 
       - name: DryRun Semantic Release
         uses: cycjimmy/semantic-release-action@v3
@@ -41,6 +42,7 @@ jobs:
         run: |
           mvn -B -U \
             -Pci-cd \
+            -X \
             release:prepare \
             release:perform \
             source:jar \
