@@ -42,7 +42,7 @@
       <connection>scm:git:https://github.com/fDizzzy/signalr-client.git</connection>
       <developerConnection>scm:git:https://github.com/fDizzzy/signalr-client.git</developerConnection>
       <tag>HEAD</tag>
-   </SCM> 
+   </scm> 
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
