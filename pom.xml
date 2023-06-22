@@ -40,7 +40,7 @@
       <url>https://github.com/fDizzzy/signalr-client.git</url>
       <connection>scm:git:https://github.com/fDizzzy/signalr-client.git</connection>
       <developerConnection>scm:git:https://github.com/fDizzzy/signalr-client.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>1.2.1</tag>
    </scm> 
     <distributionManagement>
         <snapshotRepository>
@@ -81,7 +81,7 @@
                      <autoReleaseAfterClose>${env.AUTO_RELEASE_AFTER_CLOSE}</autoReleaseAfterClose>
                   </configuration>
                </plugin>
-               <plugin>
+               <!-- <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-release-plugin</artifactId>
                   <version>2.5.3</version>
@@ -96,7 +96,7 @@
                         </goals>
                      </execution>
                   </executions>
-               </plugin>
+               </plugin> -->
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-gpg-plugin</artifactId>
