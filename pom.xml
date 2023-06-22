@@ -88,6 +88,9 @@
                   <version>2.5.3</version>
                   <configuration>
                      <tagNameFormat>@{project.version}</tagNameFormat>
+                     <checkModificationExcludes>
+                        <checkModificationExclude>pom.xml</checkModificationExclude>
+                     </checkModificationExcludes>
                   </configuration>
                   <executions>
                      <execution>
