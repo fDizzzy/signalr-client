@@ -54,3 +54,8 @@ jobs:
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          AUTO_RELEASE_AFTER_CLOSE: ${{ steps.semantic.outputs.new_release_published }}
+
+      - name: Semantic Release
+        if: steps.semantic.outputs.new_release_published == 'true'
+        uses: cycjimmy/semantic-release-action@v3
