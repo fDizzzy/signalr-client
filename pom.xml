@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>signalr-client</artifactId>
     <groupId>io.github.fDizzzy</groupId>
-    <version>1.2.1</version>
+    <version>1.2.2-SNAPSHOT</version>
     <name>io.github.fDizzzy:signalr-client</name>
     <packaging>jar</packaging>
     <description>SignalR java client</description>
@@ -40,7 +40,7 @@
       <url>https://github.com/fDizzzy/signalr-client.git</url>
       <connection>scm:git:https://github.com/fDizzzy/signalr-client.git</connection>
       <developerConnection>scm:git:https://github.com/fDizzzy/signalr-client.git</developerConnection>
-      <tag>signalr-client-1.2.1</tag>
+      <tag>1.2.1</tag>
    </scm> 
     <distributionManagement>
         <snapshotRepository>
